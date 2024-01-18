@@ -11,19 +11,17 @@ import lombok.Value;
 
 @Value
 @Builder
+@LatinLetters(groups = CreateAction.class)
 public class UserDto {
 
-    @LatinLetters
     @NotNull(groups = CreateAction.class)
     @Size(groups = CreateAction.class, max = 20, message = "Name cannot be longer than 20 characters!")
     String name;
 
-    @LatinLetters
     @NotNull(groups = CreateAction.class)
     @Size(groups = CreateAction.class, max = 40, message = "Second name cannot be longer than 40 characters!")
     String secondName;
 
-    @LatinLetters
     @NotNull(groups = CreateAction.class)
     @Size(groups = CreateAction.class, max = 40, message = "Surname cannot be longer than 40 characters!")
     String surname;
