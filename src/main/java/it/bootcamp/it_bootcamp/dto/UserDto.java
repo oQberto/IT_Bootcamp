@@ -14,6 +14,8 @@ import lombok.Value;
 @LatinLetters(groups = CreateAction.class)
 public class UserDto {
 
+    Long id;
+
     @NotNull(groups = CreateAction.class)
     @Size(groups = CreateAction.class, max = 20, message = "Name cannot be longer than 20 characters!")
     String name;
