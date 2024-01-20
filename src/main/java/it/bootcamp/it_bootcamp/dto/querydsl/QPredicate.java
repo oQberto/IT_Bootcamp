@@ -1,8 +1,6 @@
 package it.bootcamp.it_bootcamp.dto.querydsl;
 
 import com.querydsl.core.types.ExpressionUtils;
-import com.querydsl.core.types.Ops;
-import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.Predicate;
 import lombok.NoArgsConstructor;
 
@@ -10,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
-import static com.querydsl.core.types.ExpressionUtils.predicate;
-import static com.querydsl.core.types.Ops.ORDER;
 import static lombok.AccessLevel.PRIVATE;
 
 @NoArgsConstructor(access = PRIVATE)
@@ -27,13 +23,6 @@ public class QPredicate {
             predicates.add(function.apply(object));
         }
 
-        return this;
-    }
-
-    public <T extends Comparable<T>> QPredicate orderBy(OrderSpecifier<T> specifier) {
-        predicates.add(
-                predicate(ORDER, ExpressionUtils.orderBy(List.of(specifier)))
-        );
         return this;
     }
 

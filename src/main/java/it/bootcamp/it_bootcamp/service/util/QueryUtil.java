@@ -17,7 +17,6 @@ public class QueryUtil {
                .add(dto.getSurname(), user.surname::contains)
                .add(dto.getEmail(), user.email::contains)
                .add(dto.getRole(), user.role::eq)
-               .orderBy(user.email.asc())
                .build();
     }
 }
