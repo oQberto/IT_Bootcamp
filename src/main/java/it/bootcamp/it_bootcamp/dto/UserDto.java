@@ -1,16 +1,18 @@
 package it.bootcamp.it_bootcamp.dto;
 
 import it.bootcamp.it_bootcamp.model.entity.enums.Role;
-import it.bootcamp.it_bootcamp.validation.group.CreateAction;
 import it.bootcamp.it_bootcamp.validation.annotation.LatinLetters;
+import it.bootcamp.it_bootcamp.validation.group.CreateAction;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Builder;
 import lombok.Value;
+import lombok.experimental.FieldNameConstants;
 
 @Value
 @Builder
+@FieldNameConstants
 @LatinLetters(groups = CreateAction.class)
 public class UserDto {
 
