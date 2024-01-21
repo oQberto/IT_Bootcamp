@@ -1,9 +1,10 @@
-package it.bootcamp.it_bootcamp.service.impl;
+package it.bootcamp.it_bootcamp.unit.service;
 
 import it.bootcamp.it_bootcamp.dto.UserDto;
 import it.bootcamp.it_bootcamp.mapper.UserMapper;
 import it.bootcamp.it_bootcamp.model.entity.User;
 import it.bootcamp.it_bootcamp.model.repository.UserRepository;
+import it.bootcamp.it_bootcamp.service.impl.UserServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -16,11 +17,11 @@ import org.springframework.data.domain.PageRequest;
 import java.util.List;
 import java.util.Optional;
 
-import static it.bootcamp.it_bootcamp.model.entity.enums.Role.*;
 import static it.bootcamp.it_bootcamp.model.entity.enums.Role.ADMINISTRATOR;
+import static it.bootcamp.it_bootcamp.model.entity.enums.Role.CUSTOMER_USER;
 import static it.bootcamp.it_bootcamp.service.util.QueryUtil.filterBy;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
