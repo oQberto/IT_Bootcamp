@@ -24,14 +24,7 @@ public class ValidationExceptionHandler extends ResponseEntityExceptionHandler {
                                                                   HttpHeaders headers,
                                                                   HttpStatusCode status,
                                                                   WebRequest request) {
-        List<String> errors = new ArrayList<>();
-        for(FieldError error : ex.getBindingResult().getFieldErrors()) {
-            errors.add(error.getField() + ": " + error.getDefaultMessage());
-        }
-        for (ObjectError error : ex.getBindingResult().getGlobalErrors()) {
-            errors.add(error.getObjectName() + ": " + error.getDefaultMessage());
-        }
-
+        List<String> errors = getErrorMessages(ex);
         ApiError apiError = ApiError.builder()
                 .httpStatus(BAD_REQUEST)
                 .message(ex.getLocalizedMessage())
@@ -39,5 +32,16 @@ public class ValidationExceptionHandler extends ResponseEntityExceptionHandler {
                 .build();
 
         return handleExceptionInternal(ex, apiError, headers, status, request);
+    }
+
+    private static List<String> getErrorMessages(MethodArgumentNotValidException ex) {
+        List<String> errors = new ArrayList<>();
+        for(FieldError error : ex.getBindingResult().getFieldErrors()) {
+            errors.add(error.getField() + ": " + error.getDefaultMessage());
+        }
+        for (ObjectError error : ex.getBindingResult().getGlobalErrors()) {
+            errors.add(error.getObjectName() + ": " + error.getDefaultMessage());
+        }
+        return errors;
     }
 }
