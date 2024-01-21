@@ -29,7 +29,7 @@ public class UserRestController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<UserDto>> getUsers(@ModelAttribute("filter") UserDto dto,
+    public ResponseEntity<Page<UserDto>> getUsers(UserDto dto,
                                                   @PageableDefault(sort = "email", direction = ASC) Pageable pageable) {
         return ResponseEntity.ok(
                 userService.getUsersBy(dto, pageable)
