@@ -15,7 +15,6 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
 import java.util.List;
-import java.util.Optional;
 
 import static it.bootcamp.it_bootcamp.model.entity.enums.Role.ADMINISTRATOR;
 import static it.bootcamp.it_bootcamp.model.entity.enums.Role.CUSTOMER_USER;
@@ -45,11 +44,11 @@ class UserServiceImplTest {
         when(userMapper.mapToUserDto(getUser()))
                 .thenReturn(getUserDto());
 
-        Optional<UserDto> actualUser = userService.createUser(getUserDto());
+        UserDto actualUser = userService.createUser(getUserDto());
 
         assertAll(() -> {
-            assertThat(actualUser).isPresent();
-            assertThat(actualUser.get()).isEqualTo(getUserDto());
+            assertThat(actualUser).isNotNull();
+            assertThat(actualUser).isEqualTo(getUserDto());
         });
     }
 

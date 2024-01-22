@@ -4,11 +4,9 @@ import it.bootcamp.it_bootcamp.dto.UserDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.Optional;
-
 public interface UserService {
 
-    Optional<UserDto> createUser(UserDto newUser);
+    UserDto createUser(UserDto newUser);
 
     Page<UserDto> getUsersBy(UserDto dto, Pageable pageable);
 }

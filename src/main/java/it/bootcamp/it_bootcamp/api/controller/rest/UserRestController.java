@@ -1,8 +1,7 @@
-package it.bootcamp.it_bootcamp.controller.rest;
+package it.bootcamp.it_bootcamp.api.controller.rest;
 
 import it.bootcamp.it_bootcamp.dto.UserDto;
 import it.bootcamp.it_bootcamp.service.UserService;
-import it.bootcamp.it_bootcamp.service.exception.UserCreationException;
 import it.bootcamp.it_bootcamp.validation.group.CreateAction;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -24,7 +23,6 @@ public class UserRestController {
     public ResponseEntity<UserDto> createUser(@ModelAttribute("createUser") @Validated(CreateAction.class) UserDto dto) {
         return ResponseEntity.ok(
                 userService.createUser(dto)
-                        .orElseThrow(() -> new UserCreationException("Couldn't create a user!"))
         );
     }
 

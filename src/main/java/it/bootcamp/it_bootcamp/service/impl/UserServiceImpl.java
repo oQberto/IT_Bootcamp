@@ -4,6 +4,7 @@ import it.bootcamp.it_bootcamp.dto.UserDto;
 import it.bootcamp.it_bootcamp.mapper.UserMapper;
 import it.bootcamp.it_bootcamp.model.repository.UserRepository;
 import it.bootcamp.it_bootcamp.service.UserService;
+import it.bootcamp.it_bootcamp.service.exception.UserCreationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,11 +24,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public Optional<UserDto> createUser(UserDto newUser) {
+    public UserDto createUser(UserDto newUser) {
         return Optional.of(newUser)
                 .map(userMapper::mapToUser)
                 .map(userRepository::saveAndFlush)
-                .map(userMapper::mapToUserDto);
+                .map(userMapper::mapToUserDto)
+                .orElseThrow(() -> new UserCreationException("Couldn't create a user!"));
     }
 
     @Override

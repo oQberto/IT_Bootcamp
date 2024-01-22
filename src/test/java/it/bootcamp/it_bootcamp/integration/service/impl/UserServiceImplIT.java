@@ -40,15 +40,15 @@ public class UserServiceImplIT extends IntegrationTestBase {
                 .role(ADMINISTRATOR)
                 .build();
 
-        Optional<UserDto> createdUser = userService.createUser(user);
-        assertThat(createdUser).isPresent();
+        UserDto createdUser = userService.createUser(user);
+        assertThat(createdUser).isNotNull();
 
         Optional<User> actualUser = userRepository.findById(
-                createdUser.get().getId()
+                createdUser.getId()
         );
         assertThat(actualUser).isPresent();
 
-        assertThat(userMapper.mapToUser(createdUser.get())).isEqualTo(actualUser.get());
+        assertThat(userMapper.mapToUser(createdUser)).isEqualTo(actualUser.get());
     }
 
     @Test
